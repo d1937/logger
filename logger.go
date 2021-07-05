@@ -171,9 +171,19 @@ func Fatalf(format string, args ...interface{}) {
 }
 
 // Fatalf exits the program if we encounter a fatal error
-func DebugFatalf(format string, args ...interface{}) {
-	log(Debug, "", format, args...)
+func PrintStackTraceFatal(err interface{}) {
+	format := "%v\n"
+	if MaxLevel == Debug {
+		format = "%+v\n"
+	}
+	Fatalf(format, err)
 	os.Exit(1)
+}
+
+// Fatalf exits the program if we encounter a fatal error
+func PrintStackTrace(err interface{}) {
+	Infof("%v\n", err)
+
 }
 
 // Printf prints a string on screen without any extra stuff
