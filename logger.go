@@ -172,12 +172,14 @@ func Fatalf(format string, args ...interface{}) {
 
 // Fatalf exits the program if we encounter a fatal error
 func PrintStackTraceFatal(err interface{}) {
-	format := "%v\n"
+
 	if MaxLevel == Debug {
-		format = "%+v\n"
+		Fatalf("%+v\n", err)
+		os.Exit(1)
 	}
-	Fatalf(format, err)
+	Fatalf("test: %s\n", err)
 	os.Exit(1)
+
 }
 
 // Fatalf exits the program if we encounter a fatal error
