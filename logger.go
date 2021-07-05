@@ -177,7 +177,7 @@ func PrintStackTraceFatal(err interface{}) {
 		Fatalf("%+v\n", err)
 		os.Exit(1)
 	}
-	Fatalf("test: %s\n", err)
+	Fatalf("1test: %s\n", err)
 	os.Exit(1)
 
 }
