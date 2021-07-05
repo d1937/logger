@@ -170,6 +170,12 @@ func Fatalf(format string, args ...interface{}) {
 	os.Exit(1)
 }
 
+// Fatalf exits the program if we encounter a fatal error
+func DebugFatalf(format string, args ...interface{}) {
+	log(Debug, "", format, args...)
+	os.Exit(1)
+}
+
 // Printf prints a string on screen without any extra stuff
 func Printf(format string, args ...interface{}) {
 	log(Misc, "", format, args...)
