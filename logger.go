@@ -2,11 +2,10 @@ package logger
 
 import (
 	"fmt"
+	"github.com/logrusorgru/aurora"
 	"os"
 	"strings"
 	"sync"
-
-	"github.com/logrusorgru/aurora"
 )
 
 // Level defines all the available levels we can log at
@@ -177,7 +176,8 @@ func PrintStackTraceFatal(err interface{}) {
 		Fatalf("%+v\n", err)
 		os.Exit(1)
 	}
-	Fatalf("1test: %s\n", err)
+
+	Fatalf("%s\n", err)
 	os.Exit(1)
 
 }
