@@ -45,6 +45,10 @@ var (
 	mutex = &sync.Mutex{}
 )
 
+func (l Level) IsDebug() bool {
+	return l == Debug
+}
+
 var stringBuilderPool = &sync.Pool{New: func() interface{} {
 	return new(strings.Builder)
 }}
@@ -172,7 +176,7 @@ func Fatalf(format string, args ...interface{}) {
 // Fatalf exits the program if we encounter a fatal error
 func PrintStackTraceFatal(err interface{}) {
 
-	if MaxLevel == Debug {
+	if MaxLevel.IsDebug() {
 		Fatalf("%+v\n", err)
 		os.Exit(1)
 	}
