@@ -187,16 +187,15 @@ func PrintStackTraceFatal(err interface{}) {
 }
 
 // Fatalf exits the program if we encounter a fatal error
-func PrintStackTrace(err interface{}) {
-	if MaxLevel.IsDebug() {
-		Debugf("%v\n", err)
-	}
+func InfoStackTrace(err interface{}) {
+	Infof("%v\n", err)
 
 }
 
-// Fatalf exits the program if we encounter a fatal error
 func DebugStackTrace(err interface{}) {
-	Infof("%v\n", err)
+	if MaxLevel.IsDebug() {
+		Debugf("%v\n", err)
+	}
 
 }
 
