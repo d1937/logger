@@ -2,7 +2,7 @@ package logger
 
 import (
 	"fmt"
-	"github.com/logrusorgru/aurora"
+	"github.com/pterm/pterm"
 	"os"
 	"strings"
 	"sync"
@@ -65,15 +65,15 @@ func wrap(label string, level Level) string {
 	case Silent:
 		return label
 	case Info, Verbose:
-		return aurora.Blue(label).String()
+		return pterm.Blue(label)
 	case Fatal:
-		return aurora.Bold(aurora.Red(label)).String()
+		return pterm.Red(label)
 	case Error:
-		return aurora.Red(label).String()
+		return pterm.Red(label)
 	case Debug:
-		return aurora.Magenta(label).String()
+		return pterm.Green(label)
 	case Warning, Label:
-		return aurora.Yellow(label).String()
+		return pterm.Yellow(label)
 	default:
 		return label
 	}
@@ -126,9 +126,9 @@ func log(level Level, label string, format string, args ...interface{}) {
 		mutex.Lock()
 		switch level {
 		case Silent:
-			fmt.Fprint(os.Stdout, sb.String())
+			fmt.Println(sb.String())
 		default:
-			fmt.Fprint(os.Stderr, sb.String())
+			pterm.Println(sb.String())
 		}
 		mutex.Unlock()
 
